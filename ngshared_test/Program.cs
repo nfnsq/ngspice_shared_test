@@ -1,21 +1,92 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Numerics;
 
 namespace ngshared_test
 {
     class Program
     {
-        private delegate int SendChar(string toCallerOutput, int ID, IntPtr callerPointer);
+        public delegate int SendChar(
+            string toCallerOutput,
+            int ID,
+            IntPtr returnPointer);
 
-        private delegate int SendStat(string statusAndValue, int ID, IntPtr callerPointer);
+        public delegate int SendStat(
+            string toCallerOutput,
+            int ID,
+            IntPtr returnPointer);
 
-        private delegate int ControlledExit(int exitStatus, bool loadingStatus, bool quitStatus, int ID, IntPtr callerPointer);
+        public delegate int ControlledExit(
+            int exitStatus,
+            bool immeadiateDLL,
+            bool quitIsExit,
+            int ID,
+            IntPtr returnPointer);
 
-        private delegate int SendData(vecvluesall ,int StructNumber, int ID, IntPtr callerPointer);
+        public delegate int SendData(
+            Vecvaluesall vecvaluesall,
+            int structNumber,
+            int ID,
+            IntPtr returnPointer);
 
-        private delegate int SendInitData(vecinfoall , int ID, IntPtr callerPointer);
+        public delegate int SendInitData(
+            Vecinfoall vecinfoall,
+            int ID,
+            IntPtr returnPointer);
 
-        private delegate int BGThreadRunning(bool bg_runCheck, int ID, IntPtr callerPointer);
+        public delegate int BGThreadRunning(
+            string toCallerOutput,
+            int ID,
+            IntPtr returnPointer);
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Vector_Info
+        {
+            string v_name;
+            int v_type;
+            short v_flags;
+            double v_realdata;
+            Complex c_compdata;
+            int v_length;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Vecvalues
+        {
+            string name;
+            double creal;
+            double cimag;
+            bool is_scale;
+            bool is_complex;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Vecvaluesall
+        {
+            int veccount;
+            int vecindex;
+            Vecvalues vecsa;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Vecinfo
+        {
+            int number;
+            string vecname;
+            bool is_real;
+            IntPtr pdvec;
+            IntPtr pdvecscale;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct Vecinfoall
+        {
+            string name;
+            string title;
+            string data;
+            string type;
+            int veccount;
+        }
 
         [DllImport("../../src/ngspice.dll")]
         public static extern int ngSpice_Init(
@@ -25,7 +96,7 @@ namespace ngshared_test
             SendData sdata,
             SendInitData sinitdata,
             BGThreadRunning bgtrun,
-            IntPtr userdata);
+            IntPtr userData);
 
         [DllImport("../../src/ngspice.dll")]
         public static extern bool ngSpice_Command(string command);
@@ -35,12 +106,10 @@ namespace ngshared_test
 
         static void Main(string[] args)
         {
-            ngSpice_Init(
-                );
-
-            ngSpice_Command("cd C:\ngspice\tests\resistance");
-            ngSpice_Command("source res_array.cir");
-            ngSpice_Command("run");
+            ngSpice_Init();
+            ngSpice_Command("bg_run");
+            //ngSpice_Command("source res_array.cir");
+            //ngSpice_Command("run");
 
 
             if (ngSpice_running())
