@@ -42,8 +42,11 @@ namespace ngshared_test
             SendData sd = new SendData(cbSendData);
             SendInitData sid = new SendInitData(cbSendInitData);
             BGThreadRunning bgtrun = new BGThreadRunning(cbBGThreadRunnig);
-            sc = null;
-
+        //  sc = null;
+        //  ss = null;
+        //  sd = null;
+        //  sid = null;
+        //  bgtrun = null;
             //NativeMethods.ngSpice_Init(ref sc, ref ss, ref ce, ref sd, ref sid, ref bgtrun, IntPtr.Zero);
             NativeMethods.ngSpice_Init(ref sc, ref ss, ref ce, ref sd, ref sid, ref bgtrun, IntPtr.Zero);
         }
@@ -54,7 +57,7 @@ namespace ngshared_test
         {
             //ControlledExit ce = new ControlledExit(cbControlledExit);
             //NativeMethods.ngSpice_Init(null, null, ce, null, null, null, Marshal.GetIUnknownForObject(this));
-            //Init initialization = new Init();
+            Init initialization = new Init();
             //IntPtr command = Marshal.GetIUnknownForObject("bg_run");
             //NativeMethods.ngSpice_Command(command);
             //ngSpice_Command("source res_array.cir");
