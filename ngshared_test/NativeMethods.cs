@@ -214,7 +214,7 @@ namespace ngshared_test
         ///sinitdata: SendInitData*
         ///bgtrun: BGThreadRunning*
         ///userData: void*
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_Init", SetLastError = true)]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_Init", SetLastError = true)]
         public static extern int ngSpice_Init(ref SendChar printfcn, ref SendStat statfcn, ref ControlledExit ngexit, ref SendData sdata, ref SendInitData sinitdata, ref BGThreadRunning bgtrun, IntPtr userData);
 
 
@@ -224,53 +224,53 @@ namespace ngshared_test
         ///syncdat: GetSyncData*
         ///ident: int*
         ///userData: void*
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_Init_Sync")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_Init_Sync")]
         public static extern int ngSpice_Init_Sync(ref GetVSRCData vsrcdat, ref GetISRCData isrcdat, ref GetSyncData syncdat, ref int ident, IntPtr userData);
 
 
         /// Return Type: int
         ///command: char*
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_Command")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_Command")]
         public static extern int ngSpice_Command(IntPtr command);
 
 
         /// Return Type: pvector_info->vector_info*
         ///vecname: char*
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngGet_Vec_Info")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngGet_Vec_Info")]
         public static extern IntPtr ngGet_Vec_Info(IntPtr vecname);
 
 
         /// Return Type: int
         ///circarray: char**
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_Circ")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_Circ")]
         public static extern int ngSpice_Circ(ref IntPtr circarray);
 
 
         /// Return Type: char*
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_CurPlot")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_CurPlot")]
         public static extern IntPtr ngSpice_CurPlot();
 
 
         /// Return Type: char**
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_AllPlots")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_AllPlots")]
         public static extern IntPtr ngSpice_AllPlots();
 
 
         /// Return Type: char**
         ///plotname: char*
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_AllVecs")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_AllVecs")]
         public static extern IntPtr ngSpice_AllVecs(IntPtr plotname);
 
 
         /// Return Type: boolean
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_running")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_running")]
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool ngSpice_running();
 
 
         /// Return Type: boolean
         ///time: double
-        [DllImport("../../src/ngspice.dll", EntryPoint = "ngSpice_SetBkpt")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_SetBkpt")]
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool ngSpice_SetBkpt(double time);
 
