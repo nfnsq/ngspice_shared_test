@@ -70,9 +70,11 @@ namespace ngshared_test
         public double cimag;
 
         /// boolean
+        [MarshalAs(UnmanagedType.U1)]
         public bool is_scale;
 
         /// boolean
+        [MarshalAs(UnmanagedType.U1)]
         public bool is_complex;
     }
 
@@ -142,12 +144,14 @@ namespace ngshared_test
     ///param0: char*
     ///param1: int
     ///param2: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int SendChar(IntPtr param0, int param1, IntPtr param2);
 
     /// Return Type: int
     ///param0: char*
     ///param1: int
     ///param2: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int SendStat(IntPtr param0, int param1, IntPtr param2);
 
     /// Return Type: int
@@ -156,6 +160,7 @@ namespace ngshared_test
     ///param2: boolean
     ///param3: int
     ///param4: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int ControlledExit(int param0, [MarshalAs(UnmanagedType.I1)] bool param1, [MarshalAs(UnmanagedType.I1)] bool param2, int param3, IntPtr param4);
 
     /// Return Type: int
@@ -163,18 +168,21 @@ namespace ngshared_test
     ///param1: int
     ///param2: int
     ///param3: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int SendData(ref vecvaluesall param0, int param1, int param2, IntPtr param3);
 
     /// Return Type: int
     ///param0: pvecinfoall->vecinfoall*
     ///param1: int
     ///param2: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int SendInitData(ref vecinfoall param0, int param1, IntPtr param2);
 
     /// Return Type: int
     ///param0: boolean
     ///param1: int
     ///param2: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int BGThreadRunning([MarshalAs(UnmanagedType.I1)] bool param0, int param1, IntPtr param2);
 
     /// Return Type: int
@@ -183,6 +191,7 @@ namespace ngshared_test
     ///param2: char*
     ///param3: int
     ///param4: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int GetVSRCData(ref double param0, double param1, IntPtr param2, int param3, IntPtr param4);
 
     /// Return Type: int
@@ -191,6 +200,7 @@ namespace ngshared_test
     ///param2: char*
     ///param3: int
     ///param4: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int GetISRCData(ref double param0, double param1, IntPtr param2, int param3, IntPtr param4);
 
     /// Return Type: int
@@ -201,6 +211,7 @@ namespace ngshared_test
     ///param4: int
     ///param5: int
     ///param6: void*
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate int GetSyncData(double param0, ref double param1, double param2, int param3, int param4, int param5, IntPtr param6);
 
     public partial class NativeMethods
@@ -214,7 +225,10 @@ namespace ngshared_test
         ///sinitdata: SendInitData*
         ///bgtrun: BGThreadRunning*
         ///userData: void*
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_Init", SetLastError = true)]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngSpice_Init", 
+            SetLastError = true,
+            CallingConvention = CallingConvention.Cdecl)]
         public static extern int ngSpice_Init(ref SendChar printfcn, ref SendStat statfcn, ref ControlledExit ngexit, ref SendData sdata, ref SendInitData sinitdata, ref BGThreadRunning bgtrun, IntPtr userData);
 
 
@@ -224,53 +238,71 @@ namespace ngshared_test
         ///syncdat: GetSyncData*
         ///ident: int*
         ///userData: void*
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_Init_Sync")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll",
+            EntryPoint = "ngSpice_Init_Sync",
+            CallingConvention = CallingConvention.Cdecl)]
         public static extern int ngSpice_Init_Sync(ref GetVSRCData vsrcdat, ref GetISRCData isrcdat, ref GetSyncData syncdat, ref int ident, IntPtr userData);
 
 
         /// Return Type: int
         ///command: char*
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_Command")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngSpice_Command",
+            CallingConvention = CallingConvention.Cdecl)]
         public static extern int ngSpice_Command(IntPtr command);
 
 
         /// Return Type: pvector_info->vector_info*
         ///vecname: char*
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngGet_Vec_Info")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngGet_Vec_Info",
+            CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr ngGet_Vec_Info(IntPtr vecname);
 
 
         /// Return Type: int
         ///circarray: char**
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_Circ")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngSpice_Circ",
+            CallingConvention = CallingConvention.Cdecl)]
         public static extern int ngSpice_Circ(ref IntPtr circarray);
 
 
         /// Return Type: char*
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_CurPlot")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngSpice_CurPlot",
+            CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr ngSpice_CurPlot();
 
 
         /// Return Type: char**
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_AllPlots")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngSpice_AllPlots",
+            CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr ngSpice_AllPlots();
 
 
         /// Return Type: char**
         ///plotname: char*
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_AllVecs")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngSpice_AllVecs",
+            CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr ngSpice_AllVecs(IntPtr plotname);
 
 
         /// Return Type: boolean
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_running")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngSpice_running",
+            CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool ngSpice_running();
 
 
         /// Return Type: boolean
         ///time: double
-        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", EntryPoint = "ngSpice_SetBkpt")]
+        [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
+            EntryPoint = "ngSpice_SetBkpt",
+            CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool ngSpice_SetBkpt(double time);
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Numerics;
+using System.Globalization;
+using System.Windows;
 
 namespace ngshared_test
 {
@@ -8,11 +10,12 @@ namespace ngshared_test
     {
         private static int cbSendChar(IntPtr param0, int param1, IntPtr param2)
         {
-            //param0 += 7;
+            Console.WriteLine("lib %d: %s", param1, param0.ToString());
             return 0;
         }
         private static int cbSendStat(IntPtr param0, int param1, IntPtr param2)
         {
+            Console.WriteLine("lib %d: %s", param1, param0.ToString());
             return 0;
         }
         private static int cbSendData(ref vecvaluesall param0, int param1, int param2, IntPtr param3)
@@ -42,12 +45,13 @@ namespace ngshared_test
             SendData sd = new SendData(cbSendData);
             SendInitData sid = new SendInitData(cbSendInitData);
             BGThreadRunning bgtrun = new BGThreadRunning(cbBGThreadRunnig);
-        //  sc = null;
-        //  ss = null;
-        //  sd = null;
-        //  sid = null;
-        //  bgtrun = null;
+            //  sc = null;
+            //  ss = null;
+            //  sd = null;
+            //  sid = null;
+            //  bgtrun = null;
             //NativeMethods.ngSpice_Init(ref sc, ref ss, ref ce, ref sd, ref sid, ref bgtrun, IntPtr.Zero);
+            //CultureInfo cultureInfo = new CultureInfo("C"); 
             NativeMethods.ngSpice_Init(ref sc, ref ss, ref ce, ref sd, ref sid, ref bgtrun, IntPtr.Zero);
         }
     }
