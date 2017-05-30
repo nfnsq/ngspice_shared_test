@@ -1,0 +1,13 @@
+Move to ngspice_sync/ng_shared_parallel_v/Release/ and start
+ng_shared_parallel_v.exe.
+
+Compilation (tested with MS Visual Studio 2008) is available by 
+activating ng_shared_parallel_v.sln in ngspice_sync/ng_shared_parallel_v/.
+
+Compilation with CYGWIN is o.k. as well. You have to manually copy 
+usr/local/bin/cygngspice-0.dll to cygngspice-x.dll with x = 1, 2, 3.
+
+Compilation under LINUX still has to be tested.
+
+Holger
+Sept. 22nd, 2013
