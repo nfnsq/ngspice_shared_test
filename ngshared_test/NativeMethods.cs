@@ -249,7 +249,7 @@ namespace ngshared_test
         [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
             EntryPoint = "ngSpice_Command",
             CallingConvention = CallingConvention.Cdecl)]
-        public static extern int ngSpice_Command(IntPtr command);
+        public static extern int ngSpice_Command(string command);
 
 
         /// Return Type: pvector_info->vector_info*
@@ -257,7 +257,7 @@ namespace ngshared_test
         [DllImport("C:/ngspice/visualc/sharedspice/Debug.Win32/ngspice.dll", 
             EntryPoint = "ngGet_Vec_Info",
             CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr ngGet_Vec_Info(IntPtr vecname);
+        public static extern IntPtr ngGet_Vec_Info(string vecname);
 
 
         /// Return Type: int
